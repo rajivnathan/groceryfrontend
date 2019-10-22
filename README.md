@@ -13,9 +13,9 @@ A generated IBM Cloud application
 
 ## Prereqs
 * Docker installed (version 17.06 minimum)
-* Visual Studio Code, version 1.28 or later, has already been installed on your machine (https://code.visualstudio.com/)
-* The Codewind for VS Code/Eclipse plugin has been installed [VS Code Getting Started](https://www.eclipse.org/codewind/mdt-vsc-getting-started.html) & [Eclipse Getting Started](https://www.eclipse.org/codewind/mdteclipsegettingstarted.html)
-* (optional) Add your ssh key (public) to Github 
+* Visual Studio Code, version 1.28 or later installed (https://code.visualstudio.com/)
+* The Codewind for VS Code/Eclipse plugin installed [VS Code Getting Started](https://www.eclipse.org/codewind/mdt-vsc-getting-started.html) & [Eclipse Getting Started](https://www.eclipse.org/codewind/mdteclipsegettingstarted.html)
+* (optional) Add your ssh key (public) to Github (https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
 
 ## Codewind
 Codewind is an end to end development environment that lets you rapidly create, edit, and deploy applications. Applications are run in containers from day one and can be delivered into production on Kubernetes through an automated DevOps pipeline using Tekton. Codewind can be installed locally or on a cloud platform like IBM Cloud Private or OpenShift/OKD, and currently supports Java, Node.js, Swift, and several other languages. 
@@ -31,19 +31,20 @@ We’ll be using this application to show the various capabilities of Codewind, 
 The grocery store inventory front end and back end projects need to be created before you start the remaining exercises. Codewind has the capability to create a new project or import existing projects. In this setup phase, we’ll import an initial frontend application and create the backend application, and then connect them together. 
 
 ### Step 1: Import the frontend project 
-1. Clone the frontend project from https://github.com/rajivnathan/groceryfrontend to the codewind-workspace directory.
-2. Import the frontend project from the Codewind Explorer menu by right clicking on Projects and selecting `Add Existing Project`. (**Note**: For Eclipse, the Codewind Explorer can viewed by navigating to Window > Show View > Other… > Codewind > Codewind Explorer. Furthermore, the project first needs to be imported to the Eclipse workspace by using the Eclipse Import... > General > Projects from Folder or Archive, and importing the frontend project from the codewind-workspace directory, you cloned above. You can now view the project from `Add Existing Project...` menu option from the Codewind plugin in the Codewind Explorer)
+1. Clone the frontend project from https://github.com/rajivnathan/groceryfrontend to the codewind-workspace directory (Usually located in your home directory).
+2. Import the frontend project from the Codewind Explorer menu by right clicking on Projects and selecting `Add Existing Project`. (**Note**: For Eclipse, the Codewind Explorer can be viewed by navigating to Window > Show View > Other… > Codewind > Codewind Explorer. Furthermore, the project first needs to be imported to the Eclipse workspace by using the Eclipse Import... > General > Projects from Folder or Archive, and importing the frontend project from the codewind-workspace directory, you cloned above. You can now view the project from `Add Existing Project...` menu option from the Codewind plugin in the Codewind Explorer)
   ![image](https://media.github.com/user/36567/files/d61d5880-ada4-11e9-9ec9-a406c79a9914)
-3. As the project imports, Codewind will detect the project type. Verify that it detects the project type correctly (Node) and that there are no validation errors. Click **Yes** to complete the import project.
+3. As the project imports, Codewind will detect the project type. Verify that it detects the project type correctly (nodejs). Click **Yes** to finish importing the project.
+The project will appear in the Codewind view and will start building automatically. The first build may take some time to complete because images will need to be pulled and build dependencies downloaded.
 
 ### Step 2: Create the backend project 
 1. In the Codewind Explorer menu, right click **Projects** and select **Create New Project**
 2. Select the **WebSphere Liberty MicroProfile** type and give it the name 'grocerybackend' and press **Enter**
 3. Wait for the project to build and start. The project build status will change to *Build successful* and the project app status will change to *Running*. 
 4. In your browser, navigate to https://github.com/rajivnathan/grocerybackend/tree/add-db. Download the contents of this branch to your local machine and extract the contents. Move the extracted contents (`db` and `src`) to the `grocerybackend` directory under the `codewind-workspace`.
-5. Select **Replace** if there is an error or warning saying the folder application already exists. 
+5. Select **Replace** if there is an error or warning saying the folder application already exists.
 6. In VS Code, you should see the grocerybackend automatically start building once it detects the file changes. If not, simply right click the project and select `Build`.
-7. Check the Codewind Explorer/Projects view and make sure both the groceryfrontend and grocerybackend projects have built successfully and are running. 
+7. Check the Codewind Explorer/Projects view and make sure both the groceryfrontend and grocerybackend projects have built successfully and are running.
 
 ## Exploring Codewind (Optional)
 The two projects will take some time to build and then start in Docker. In the meantime, we'll explore more of Codewind.
@@ -93,28 +94,28 @@ dc5fb1ccb85c        cw-grocerybackend-1f978240-c8f0-11e9-a816-37bb7467867f    "/
 ## Exercise 1 - Adding the Item Quantity Feature
 The item quantity status feature is used to display the quantity status of a specific item. If the quantity is less than 10, then that means the quantity is low and the seller needs to replenish inventory and use the edit item feature to update the quantity. In this exercise, we are going to add the item quantity status feature to the front end application.
 
-1. Implement the item quantity status feature. 
-   a. In the Codewind Explorer view in VS Code, select the **groceryfrontend** project and navigate to `groceryfrontend/public/js/store.js`. 
-   b. Search for **ADD STATUS FEATURE HERE - JavaScript Logic** and add the code below. This code is used to check the quantity for each item, and then add the status to the item. If the item's quantity is less than 10, then a warning image will be added to the item's status column. Otherwise, a checkmark image will be added to the item's status column.
+1. Implement the item quantity status feature.  
+   a. In the Codewind Explorer view in VS Code, select the **groceryfrontend** project and navigate to `groceryfrontend/public/js/store.js`.  
+   b. Search for **ADD STATUS FEATURE HERE - JavaScript Logic** and add the code below. This code is used to check the quantity for each item, and then add the status to the item. If the item's quantity is less than 10, then a warning image will be added to the item's status column. Otherwise, a checkmark image will be added to the item's status column.  
    
    ```
    if(data[i].quantity < 10){
-                        statusNumber = 0;
-                        status = '<img src="img/warning.svg" class="status-warning">';
-                    }
-                    else {
-                        statusNumber = 1;
-                        status = '<img src="img/checkmark.svg" class="status-ok">';
-                    }
+     statusNumber = 0;
+     status = '<img src="img/warning.svg" class="status-warning">';
+   }
+   else {
+     statusNumber = 1;
+    status = '<img src="img/checkmark.svg" class="status-ok">';
+   }
    ```
-   c. Save the file and codewind will pick up the changes automatically. The build status stays **Build successful** and the application will stay in **Running state**.
-   d. You have now implemented the item quantity status feature; it is time to test it.
+   c. Save the file and codewind will pick up the changes automatically. Wait for the build status to say **Build successful** and the application status to say **Running**.  
+   d. You have now implemented the item quantity status feature; it is time to test it.  
    
-2. Test the item quantity status feature
-   a. Open the app. Now click the **Add Item** button and add an item, but set the quantity to a number less than 10. 
-   b. Verify that the new item's status is red.
-   c. Then **Edit** the new item so that its quantity is greater than 10.
-   d. Check that the status of that item is now green.
+2. Test the item quantity status feature  
+   a. Open the app. Now click the **Add Item** button and add an item, but set the quantity to a number less than 10.  
+   b. Verify that the new item's status is red.  
+   c. Then **Edit** the new item so that its quantity is greater than 10.  
+   d. Check that the status of that item is now green.  
 <img width="1364" alt="screen shot 2019-08-28 at 9 10 56 am" src="https://media.github.com/user/36567/files/0a6fd000-c974-11e9-9662-eb1f07ad6a37">
 <img width="1364" alt="screen shot 2019-08-28 at 9 15 37 am" src="https://media.github.com/user/36567/files/92ee7080-c974-11e9-9c68-716fabcfe94f">
 
@@ -123,10 +124,10 @@ The item quantity status feature is used to display the quantity status of a spe
 The delete item feature is used to delete an item that is no longer sold by the seller. In this exercise, we are going to add the delete item feature to the front end application and the back end application. 
 
 ### Step 1: Adding the delete item feature
-1. If the *Explorer* view is not open, use the icon at the top left. Expand *Codewind Explorer*
-2. Select the **groceryfrontend** project in `codewind-workspace`. 
-3. Open **groceryfrontend/public/index.html**
-4. Search for **ADD DELETE ITEM FEATURE HERE - MODAL HTML**. Add in the following code. This code is used to define the delete modal html page. After the user clicks the delete button, the delete modal html page will be brought up to let the user confirm if they want to delete the item.
+1. If the *Explorer* view is not open, use the icon at the top left. Expand *Codewind Explorer*  
+2. Select the **groceryfrontend** project in `codewind-workspace`.  
+3. Open **groceryfrontend/public/index.html**  
+4. Search for **ADD DELETE ITEM FEATURE HERE - MODAL HTML**. Add in the following code. This code is used to define the delete modal html page. After the user clicks the delete button, the delete modal html page will be brought up to let the user confirm if they want to delete the item.  
 
 ```
 <!-- ADD DELETE ITEM FEATURE HERE - MODAL HTML -->
@@ -159,37 +160,37 @@ The delete item feature is used to delete an item that is no longer sold by the 
 
 5. Open **groceryfrontend/public/js/store.js**. Search **ADD DELETE ITEM FEATURE HERE - CREATE MODAL** and then type in the following code:
 ```
-        /* ADD DELETE ITEM FEATURE HERE - CREATE MODAL */
-        var deleteModal = $('.delete-modal');
-        CarbonComponents.Modal.create(deleteModal.get(0));
+    /* ADD DELETE ITEM FEATURE HERE - CREATE MODAL */
+    var deleteModal = $('.delete-modal');
+    CarbonComponents.Modal.create(deleteModal.get(0));
 ```
 6. Search for **ADD DELETE ITEM FEATURE HERE - CALL MODAL** and add the following code:
 ```
-                /* ADD DELETE ITEM FEATURE HERE - CALL MODAL */
-                CarbonComponents.Modal.components.get($('.delete-modal').get(0)).show();
-                $('.delete-modal .description').text('Are you sure you want to delete the item ' + escapeHtml(selectedID) + '?');
+    /* ADD DELETE ITEM FEATURE HERE - CALL MODAL */
+    CarbonComponents.Modal.components.get($('.delete-modal').get(0)).show();
+    $('.delete-modal .description').text('Are you sure you want to delete the item ' + escapeHtml(selectedID) + '?');
 ```
 7. Search for **ADD DELETE ITEM FEATURE HERE - CALL BACKEND DELETE FUNCTION** and add the following code to enable the delete action.
 ```
-/* ADD DELETE ITEM FEATURE HERE - CALL BACKEND DELETE FUNCTION */
-        $('#delete-modal-yes-button').on('click', function(){
-            $.ajax({
-                method: 'DELETE',
-                url: '/store/api/v1/item/' + selectedID,
-                crossDomain: true,
-                success:function(response){ 
-                    renderTable();
-                }
-            }).fail(function(jqXHR, textStatus, errorThrown) {
-                // do nothing for now
-            }).done(function(){
-                CarbonComponents.Modal.components.get($('.delete-modal').get(0)).hide();
-            });
-        });
-
-        $('#delete-modal-no-button').on('click', function(){
+    /* ADD DELETE ITEM FEATURE HERE - CALL BACKEND DELETE FUNCTION */
+    $('#delete-modal-yes-button').on('click', function(){
+        $.ajax({
+            method: 'DELETE',
+            url: '/store/api/v1/item/' + selectedID,
+            crossDomain: true,
+            success:function(response){ 
+                renderTable();
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            // do nothing for now
+        }).done(function(){
             CarbonComponents.Modal.components.get($('.delete-modal').get(0)).hide();
         });
+    });
+
+    $('#delete-modal-no-button').on('click', function(){
+        CarbonComponents.Modal.components.get($('.delete-modal').get(0)).hide();
+    });
 ```
 
 ### Step 2: Implement the Delete Backend Function
@@ -226,9 +227,9 @@ If you have successfully tested out the delete item function, then you have succ
 
 
 Have a few more minutes? You could:
-- Restart the backend container in debug mode from within Visual Studio Code, set breakpoints, and hit the application.
-- Make furhter changes to the frontend of backend projects and see the change automatically updated into the running container.
+- Restart the backend container in debug mode from within Visual Studio Code, set breakpoints, and inspect the running code.
+- Make further changes to the frontend or backend projects.
 - Create a new microservice project in another language.
-- Run load against the frontend or backend and see how it performs.
+- Run a load test against the frontend or backend and see how it performs.
 
-Thanks for taking a quick look at Codewind! If you have any questions, please Google IBM Codewind and join us via Github or on mattermost (https://mattermost.eclipse.org/eclipse/channels/eclipse-codewind).
+Thanks for taking a quick look at Codewind! To learn more about Codewind, visit https://www.eclipse.org/codewind/. If you have any questions/feedback, you can reach us via Github (https://github.com/eclipse/codewind/) or on mattermost (https://mattermost.eclipse.org/eclipse/channels/eclipse-codewind).
