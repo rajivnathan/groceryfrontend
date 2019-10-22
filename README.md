@@ -33,7 +33,7 @@ The grocery store inventory front end and back end projects need to be created b
 ### Step 1: Import the frontend project 
 1. Clone the frontend project from https://github.com/rajivnathan/groceryfrontend to the codewind-workspace directory (Usually located in your home directory).
 2. Import the frontend project from the Codewind Explorer menu by right clicking on Projects and selecting `Add Existing Project`. (**Note**: For Eclipse, the Codewind Explorer can be viewed by navigating to Window > Show View > Other… > Codewind > Codewind Explorer. Furthermore, the project first needs to be imported to the Eclipse workspace by using the Eclipse Import... > General > Projects from Folder or Archive, and importing the frontend project from the codewind-workspace directory, you cloned above. You can now view the project from `Add Existing Project...` menu option from the Codewind plugin in the Codewind Explorer)
-  ![image](https://media.github.com/user/36567/files/d61d5880-ada4-11e9-9ec9-a406c79a9914)
+  ![image](https://user-images.githubusercontent.com/20015929/67326859-15169380-f4e5-11e9-88d7-c92d2c879689.png)
 3. As the project imports, Codewind will detect the project type. Verify that it detects the project type correctly (nodejs). Click **Yes** to finish importing the project.
 The project will appear in the Codewind view and will start building automatically. The first build may take some time to complete because images will need to be pulled and build dependencies downloaded.
 
@@ -60,12 +60,12 @@ The two projects will take some time to build and then start in Docker. In the m
 Let's test the application to see how it behaves.
 
 1. Right-click the *groceryfrontend* project in the Codewind Explorer, then select *Open App*. This will bring the application up in the browser.
-![image](https://media.github.com/user/36567/files/80c10200-c975-11e9-9417-0a9a5d44ea16)
-![image](https://media.github.com/user/118508/files/dddf5a80-dba5-11e9-831e-861d1308779b)
+![image](https://user-images.githubusercontent.com/20015929/67326861-15169380-f4e5-11e9-8c91-e32697499123.png)
+![image](https://user-images.githubusercontent.com/20015929/67326862-15169380-f4e5-11e9-8e23-90f45faf7468.png)
 2. Once the application appears, you'll see that the inventory system is blank, and no actions can be done yet. That is because the frontend application does not implement the backend yet. 
-![image](https://media.github.com/user/36567/files/07bb9f00-c8d0-11e9-8c86-a6bb1b584238)
+![image](https://user-images.githubusercontent.com/20015929/67326863-15169380-f4e5-11e9-8de6-b21f5927293e.png)
 3. In the Codewind-Workspace in VS Code, navigate to `groceryfrontend > server > apis > storeAPIs.js`. We need to change the value of backendHost on line 6. 
-4. In your terminal, run `docker ps -a`. Your output should look something like: 
+4. In your terminal, run `docker ps -a`. Your output should look something like:  
 ```
 USER$ docker ps -a
 CONTAINER ID        IMAGE                                                     COMMAND                  CREATED             STATUS              PORTS                                                                         NAMES
@@ -75,21 +75,21 @@ dc5fb1ccb85c        cw-grocerybackend-1f978240-c8f0-11e9-a816-37bb7467867f    "/
 1338a1b9d1ee        codewind-performance-amd64:latest                         "docker-entrypoint.s…"   16 minutes ago      Up 16 minutes       127.0.0.1:9095->9095/tcp                                                      codewind-performance
 ```
 5. Copy the backend image name (in the above example, `cw-grocerybackend-1f978240-c8f0-11e9-a816-37bb7467867f`) and replace the value in line 6. 
-![image](https://media.github.com/user/36567/files/d80d9680-c8d1-11e9-95b6-be44f477ba60)
+![image](https://user-images.githubusercontent.com/20015929/67326864-15af2a00-f4e5-11e9-8f83-c3baf5d87610.png)
 6. Save your changes and rebuild the groceryfrontend application. 
 7. When the groceryfrontend project has built successfully and is back in Running state, open the application again to see that there is now an inventory list.
-![screen shot 2019-08-27 at 3 53 39 pm](https://media.github.com/user/36567/files/304d9400-c8e4-11e9-9a00-d61c82f4ed99)
+![screen shot 2019-08-27 at 3 53 39 pm](https://user-images.githubusercontent.com/20015929/67326865-15af2a00-f4e5-11e9-946f-a5916c99a874.png)
 8. Test the add, edit, search, and sort features to make sure the front end and back end applications are functional.
 - Add an item and double check it was added. 
-![screen shot 2019-08-27 at 3 56 44 pm](https://media.github.com/user/36567/files/fc726e80-c8e3-11e9-9537-05bf2d8599bc)
-- You can also use the search feature to double check.
-![screen shot 2019-08-27 at 2 52 26 pm](https://media.github.com/user/36567/files/51a98280-c8da-11e9-8925-1a8d4640c5ff)
-![screen shot 2019-08-27 at 4 03 53 pm](https://media.github.com/user/36567/files/4bb89f00-c8e4-11e9-807f-7ead2887acd7)
+![screen shot 2019-08-27 at 3 56 44 pm](https://user-images.githubusercontent.com/20015929/67326866-15af2a00-f4e5-11e9-811f-87b380df3a29.png)
+- You can also use the search feature to double check.  
+![screen shot 2019-08-27 at 2 52 26 pm](https://user-images.githubusercontent.com/20015929/67326867-15af2a00-f4e5-11e9-8cc6-e116053b3c54.png)
+![screen shot 2019-08-27 at 4 03 53 pm](https://user-images.githubusercontent.com/20015929/67326869-15af2a00-f4e5-11e9-99bf-30f04301d819.png)
 - You can also edit the price and quantity of an item:
-![image](https://media.github.com/user/36567/files/6be85e00-c8e4-11e9-8717-88f20140a44e)
+![image](https://user-images.githubusercontent.com/20015929/67326870-15af2a00-f4e5-11e9-8f25-19b4cf31950c.png)
 - Then check to see that the price and quantity have been updated
 - You can also sort the items by Name, Unit Price, and Quantity
-![screen shot 2019-08-27 at 4 06 52 pm](https://media.github.com/user/36567/files/ef09b400-c8e4-11e9-8a71-1817cd2c71d7)
+![screen shot 2019-08-27 at 4 06 52 pm](https://user-images.githubusercontent.com/20015929/67326871-15af2a00-f4e5-11e9-9095-0cc107046f52.png)
 
 ## Exercise 1 - Adding the Item Quantity Feature
 The item quantity status feature is used to display the quantity status of a specific item. If the quantity is less than 10, then that means the quantity is low and the seller needs to replenish inventory and use the edit item feature to update the quantity. In this exercise, we are going to add the item quantity status feature to the front end application.
@@ -116,8 +116,8 @@ The item quantity status feature is used to display the quantity status of a spe
    b. Verify that the new item's status is red.  
    c. Then **Edit** the new item so that its quantity is greater than 10.  
    d. Check that the status of that item is now green.  
-<img width="1364" alt="screen shot 2019-08-28 at 9 10 56 am" src="https://media.github.com/user/36567/files/0a6fd000-c974-11e9-9662-eb1f07ad6a37">
-<img width="1364" alt="screen shot 2019-08-28 at 9 15 37 am" src="https://media.github.com/user/36567/files/92ee7080-c974-11e9-9c68-716fabcfe94f">
+<img width="1364" alt="screen shot 2019-08-28 at 9 10 56 am" src="https://user-images.githubusercontent.com/20015929/67326872-15af2a00-f4e5-11e9-88a3-34d506271d98.png">
+<img width="1364" alt="screen shot 2019-08-28 at 9 15 37 am" src="https://user-images.githubusercontent.com/20015929/67326873-15af2a00-f4e5-11e9-9830-7390633c35c0.png">
 
 
 ## Exercise 2 - Adding the Delete Function to the Application
@@ -207,21 +207,22 @@ The delete item feature is used to delete an item that is no longer sold by the 
             return Response.status(Response.Status.ACCEPTED).entity("Deleted item successfully.").build();
     }
 ```
-<img width="1626" alt="screen shot 2019-08-28 at 9 32 46 am" src="https://media.github.com/user/36567/files/40628380-c977-11e9-9e1a-778d3c18ddf1">
+  
+<img width="1626" alt="screen shot 2019-08-28 at 9 32 46 am" src="https://user-images.githubusercontent.com/20015929/67326874-15af2a00-f4e5-11e9-9332-241fcee7115d.png">  
 
 2. Expand the *Codewind* view on the left if it is not already open. You can see the backend project being rebuilt and restarted.
-3. Wait until the project has finished building and restarting. If you want to see progress, right-click the project and select `Show all logs`.
-<img width="1859" alt="screen shot 2019-08-28 at 2 42 32 pm" src="https://media.github.com/user/36567/files/8c76ed80-c9a2-11e9-873d-d9b0cbb816ec">
-<img width="1859" alt="screen shot 2019-08-28 at 2 42 32 pm" src="https://media.github.com/user/118508/files/e59eff00-dba5-11e9-8759-d9fd39da567e">
+3. Wait until the project has finished building and restarting. If you want to see progress, right-click the project and select `Show all logs`.  
+<img width="1859" alt="screen shot 2019-08-28 at 2 42 32 pm" src="https://user-images.githubusercontent.com/20015929/67326876-1647c080-f4e5-11e9-9275-3d03f0c66bbc.png">
+<img width="1859" alt="screen shot 2019-08-28 at 2 42 32 pm" src="https://user-images.githubusercontent.com/20015929/67326875-15af2a00-f4e5-11e9-8261-bd2e0a79d8bb.png">  
 
 
 ### Step 3: Testing the delete capability
 1. Once the project is rebuilt, you can use the *Open in Browser* function in the *Codewind* view from VSCode, or you can use the Application Endpoint provided on the project overview page.
-![image](https://media.github.com/user/36567/files/aa042600-86d7-11e9-8708-52e2f7315d0a)
+![image](https://user-images.githubusercontent.com/20015929/67326877-1647c080-f4e5-11e9-9cdd-7aef393fd6d8.png)
 2. Test the application again. This time, you can successfully create and delete items.
-<img width="1657" alt="screen shot 2019-08-28 at 2 47 46 pm" src="https://media.github.com/user/36567/files/82092380-c9a3-11e9-992d-dc302071104d">
-<img width="1657" alt="screen shot 2019-08-28 at 2 48 47 pm" src="https://media.github.com/user/36567/files/ad8c0e00-c9a3-11e9-9c4a-3a89aa6e85b0">
-<img width="1643" alt="screen shot 2019-08-28 at 2 48 56 pm" src="https://media.github.com/user/36567/files/4589f780-c9a4-11e9-986d-fadc6a96454d">
+<img width="1657" alt="screen shot 2019-08-28 at 2 47 46 pm" src="https://user-images.githubusercontent.com/20015929/67326878-1647c080-f4e5-11e9-8615-1c73efb9e6e0.png">
+<img width="1657" alt="screen shot 2019-08-28 at 2 48 47 pm" src="https://user-images.githubusercontent.com/20015929/67326879-1647c080-f4e5-11e9-9adb-ab1436668c31.png">
+<img width="1643" alt="screen shot 2019-08-28 at 2 48 56 pm" src="https://user-images.githubusercontent.com/20015929/67326880-1647c080-f4e5-11e9-932c-2e4e714f94cf.png">
 
 If you have successfully tested out the delete item function, then you have successfully completed this lab! 
 
