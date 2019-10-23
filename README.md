@@ -31,8 +31,8 @@ These instructions have been tailored to the environment for this specific lab's
 ### Step 1: Import the frontend project 
 This step demonstrates Codewind's import feature that allows you to start from an existing project.
 
-1. Copy the groceryfrontend project to the codewind workspace and start Visual Studio Code
-    a. `sudo cp -r ~/codewind-lab/groceryfrontend ~/codewind-workspace/groceryfrontend`
+1. Copy the groceryfrontend project to the codewind workspace and start Visual Studio Code  
+    a. `sudo cp -r ~/codewind-lab/groceryfrontend ~/codewind-workspace/groceryfrontend`  
     b. `sudo lab-start`
 2. Import the frontend project from the Codewind Explorer menu by right clicking on Projects and selecting `Add Existing Project`. (**Note**: For Eclipse, the Codewind Explorer can be viewed by navigating to Window > Show View > Other… > Codewind > Codewind Explorer. Furthermore, the project first needs to be imported to the Eclipse workspace by using the Eclipse Import... > General > Projects from Folder or Archive, and importing the frontend project from the codewind-workspace directory, you cloned above. You can now view the project from `Add Existing Project...` menu option from the Codewind plugin in the Codewind Explorer)
   ![image](https://user-images.githubusercontent.com/20015929/67326859-15169380-f4e5-11e9-88d7-c92d2c879689.png)
@@ -45,7 +45,7 @@ This step demonstrates Codewind's project creation feature that allows you to qu
 1. In the Codewind Explorer menu, right click **Projects** and select **Create New Project**
 2. Select the **WebSphere Liberty MicroProfile** type and give it the name 'grocerybackend' and press **Enter**
 3. Wait for the project to build and start. The project build status will change to *Build successful* and the project app status will change to *Running*. 
-4. Copy some files for initial setup of the backend. Open a terminal window and run the following command:
+4. Copy some files for initial setup of the backend. Open a terminal window and run the following command:  
     `sudo cp -r ~/codewind-lab/resources/* ~/codewind-workspace/grocerybackend/`
 5. In VS Code, you should see the grocerybackend automatically start building once it detects the file changes. If not, simply right click the project and select `Build`.
 6. Check the Codewind Explorer/Projects view and make sure both the groceryfrontend and grocerybackend projects have built successfully and are running.
@@ -237,4 +237,8 @@ Have a few more minutes? You could:
 - Create a new microservice project in another language.
 - Run a load test against the frontend or backend and see how it performs.
 
-Thanks for taking a quick look at Codewind! To learn more about Codewind, visit https://www.eclipse.org/codewind/. If you have any questions/feedback, you can reach us via Github (https://github.com/eclipse/codewind/) or on mattermost (https://mattermost.eclipse.org/eclipse/channels/eclipse-codewind).
+Thanks for taking a quick look at Codewind! To learn more about Codewind, visit https://www.eclipse.org/codewind/
+
+If you have any questions/feedback, you can reach us on:  
+Github (https://github.com/eclipse/codewind/)  
+Mattermost (https://mattermost.eclipse.org/eclipse/channels/eclipse-codewind)
