@@ -1,34 +1,29 @@
-# Grocery Store App Frontend
+# Codewind Grocery Store Lab Session
 
-This is the frontend component of the grocery store sorting app. You'll be importing the two components of this application:
-- groceryfrontend (this repo)
-- grocerybackend (https://github.com/rajivnathan/grocerybackend)
+This repository contains the frontend component of the grocery store sorting app. You'll be importing the two components of this application:
+- groceryfrontend
+- grocerybackend
 You'll be exploring the Visual Studio Code plugin.
-You'll be integrating the components and adding function to the application.
+You'll be integrating the components and adding functionality to the application.
 
-
-A generated IBM Cloud application
-
-[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)
-
-## Prereqs (These have already been set up on the lab virtual machine)
+## Prereqs (These have already been set up on the lab machine)
 * Docker installed (version 17.06 minimum)
 * Visual Studio Code, version 1.28 or later installed (https://code.visualstudio.com/)
 * The Codewind for VS Code/Eclipse plugin installed [VS Code Getting Started](https://www.eclipse.org/codewind/mdt-vsc-getting-started.html) & [Eclipse Getting Started](https://www.eclipse.org/codewind/mdteclipsegettingstarted.html)
 * (optional) Add your ssh key (public) to Github (https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
 
-## Codewind
+## About Codewind
 Codewind is an end to end development environment that lets you rapidly create, edit, and deploy applications. Applications are run in containers from day one and can be delivered into production on Kubernetes through an automated DevOps pipeline using Tekton. Codewind can be installed locally or on a cloud platform like IBM Cloud Private or OpenShift/OKD, and currently supports Java, Node.js, Swift, and several other languages. 
 
 For this lab, we will be installing and running the Codewind plugin in Visual Studio Code. This means that integration with local tools like Visual Studio Code will be included, but we cannot show the Codewind pipeline (which supports deployment of application to Kubernetes on IBM Cloud Private or IBM Container Service) or other tools included in the hosted version of Codewind on IBM Cloud Private. 
 
-## Grocery Store Inventory System
+## About the Codewind Grocery Store Inventory app
 This lab uses a grocery store inventory system to demonstrate Codewind’s capabilities. The inventory system is comprised of a frontend and a backend project. The frontend is a Node.js application, and the backend is a Java MicroProfile microservice. The frontend displays the user interface of the grocery store inventory system and lets the user manage the inventory via adding, editing, deleting, searching and sorting. The backend microservice is a database to store the item’s status, name, unit price and quantity. In order to use the grocery store inventory system you need to start both projects so that the frontend can call the backend. 
 
-We’ll be using this application to show the various capabilities of Codewind, then we’ll add an action to the backend project (already written for you) to show how changes are automatically synced into the running Docker image. 
+We’ll be using this application to show the various capabilities of Codewind, then we’ll add an action to the backend project (already written for you) to show how changes are automatically synced into the running container. 
 
 ## Grocery Store Inventory System Setup
-The grocery store inventory front end and back end projects need to be created before you start the remaining exercises. Codewind has the capability to create a new project or import existing projects. In this setup phase, we’ll import an initial frontend application and create the backend application, and then connect them together. 
+The grocery store inventory front end and back end projects need to be created before you start the lab exercises. Codewind has the capability to create a new project or import existing projects. In this setup phase, we’ll import an initial frontend application and create the backend application, and then connect them together. 
 
 ### Important note
 These instructions have been tailored to the environment for this specific lab's virtual machine. If you want to complete the lab on your own device you should follow the instructions on the **master** branch.
