@@ -1,10 +1,14 @@
 # Codewind Grocery Store Lab Session
 
-This repository contains the frontend component of the grocery store sorting app. You'll be importing the two components of this application:
+This repository contains the frontend component of the grocery store inventory app and this README contains all instructions for the lab.
+
+## Overview
+You'll be importing the two components of this application:
 - groceryfrontend
-- grocerybackend
-You'll be exploring the Visual Studio Code plugin.
-You'll be integrating the components and adding functionality to the application.
+- grocerybackend  
+
+You'll be exploring the Visual Studio Code plugin.  
+You'll be integrating the components and adding functionality to the application.  
 
 ## Prereqs (These have already been set up on the lab machine)
 * Docker installed (version 17.06 minimum)
@@ -25,16 +29,17 @@ We’ll be using this application to show the various capabilities of Codewind, 
 ## Grocery Store Inventory System Setup
 The grocery store inventory front end and back end projects need to be created before you start the lab exercises. Codewind has the capability to create a new project or import existing projects. In this setup phase, we’ll import an initial frontend application and create the backend application, and then connect them together. 
 
-### Important note
+### ⚠️ Important note ⚠️
 These instructions have been tailored to the environment for this specific lab's virtual machine. If you want to complete the lab on your own device you should follow the instructions on the **master** branch.
 
 ### Step 1: Import the frontend project 
 This step demonstrates Codewind's import feature that allows you to start from an existing project.
 
-1. Copy the groceryfrontend project to the codewind workspace and start Visual Studio Code  
+1. The groceryfrontend project has been cloned to a local folder on the lab VM to avoid potential network problems during the lab. Copy the groceryfrontend project to the codewind workspace and start Visual Studio Code using the startup script. Open a Terminal _(Applications > System Tools > MATE Terminal)_ and enter the following commands:  
     a. `sudo cp -r ~/codewind-lab/groceryfrontend ~/codewind-workspace/groceryfrontend`  
-    b. `sudo lab-start`
-2. Import the frontend project from the Codewind Explorer menu by right clicking on Projects and selecting `Add Existing Project`. (**Note**: For Eclipse, the Codewind Explorer can be viewed by navigating to Window > Show View > Other… > Codewind > Codewind Explorer. Furthermore, the project first needs to be imported to the Eclipse workspace by using the Eclipse Import... > General > Projects from Folder or Archive, and importing the frontend project from the codewind-workspace directory, you cloned above. You can now view the project from `Add Existing Project...` menu option from the Codewind plugin in the Codewind Explorer)
+    b. `sudo lab-start`  
+  Note: If prompted for password enter `cas2019con`  
+2. Import the frontend project from the Codewind Explorer menu by right clicking on Projects and selecting `Add Existing Project`.
   ![image](https://user-images.githubusercontent.com/20015929/67326859-15169380-f4e5-11e9-88d7-c92d2c879689.png)
 3. As the project imports, Codewind will detect the project type. Verify that it detects the project type correctly (nodejs). Click **Yes** to finish importing the project.
 The project will appear in the Codewind view and will start building automatically. The first build may take some time to complete because images will need to be pulled and build dependencies downloaded.
@@ -43,21 +48,23 @@ The project will appear in the Codewind view and will start building automatical
 This step demonstrates Codewind's project creation feature that allows you to quickly bootstrap a microservice project.
 
 1. In the Codewind Explorer menu, right click **Projects** and select **Create New Project**
-2. Select the **WebSphere Liberty MicroProfile** type and give it the name 'grocerybackend' and press **Enter**
+2. Enter `websphere` in the filter box and select the **WebSphere Liberty MicroProfile** type and give it the name `grocerybackend` and press **Enter**  
+   ![image](https://user-images.githubusercontent.com/20015929/67790818-c5881880-fa4c-11e9-9715-c192c2dd6005.png)  
+   ![image](https://user-images.githubusercontent.com/20015929/67791171-624ab600-fa4d-11e9-9406-4852b626d2b2.png)  
 3. Wait for the project to build and start. The project build status will change to *Build successful* and the project app status will change to *Running*. 
-4. Copy some files for initial setup of the backend. Open a terminal window and run the following command:  
+4. Copy some files for initial setup of the backend. Switch back to the terminal window and run the following command:  
     `sudo cp -r ~/codewind-lab/resources/* ~/codewind-workspace/grocerybackend/`
-5. The data file needs to be writable within the container so we need to modify the permissions on the file  
+5. The data file needs to be writable within the grocerybackend container so we need to modify the permissions on the file  
     `sudo chown -R 1001 ~/codewind-workspace/grocerybackend/db/data.json`
-5. In VS Code, you should see the grocerybackend automatically start building once it detects the file changes. If not, simply right click the project and select `Build`.
-6. Check the Codewind Explorer/Projects view and make sure both the groceryfrontend and grocerybackend projects have built successfully and are running.
+6. In VS Code, you should see the grocerybackend automatically start building once it detects the file changes. If not, simply right click the project and select `Build`.
+7. Check the Codewind Explorer/Projects view and make sure both the groceryfrontend and grocerybackend projects have built successfully and are running.
 
 ## Exploring Codewind (Optional)
 The two projects will take some time to build and then start in Docker. In the meantime, we'll explore more of Codewind.
 
 1. You can explore Codewind projects from the Explorer menu. Expand Codewind > Projects, and you should see your `grocerybackend` and `groceryfrontend` projects. 
-2. Right-click on the **grocerybackend** project and select **Open Project Overview**
-3. To edit the code, look to the Explorer menu for the `Codewind-workspace` section, and you can click through the source code.
+2. Codewind provides a Project Overview page to view information about a specific project. Right-click on the **grocerybackend** project and select **Open Project Overview**
+3. To view and edit project code, look to the Explorer menu for the `Codewind-workspace` section, and you can click through the source code.
 4. From the Codewind Explorer (`Codewind > Projects (Local)`), you can right click on `grocerystorebackend` and select `Show All Logs` (**Note**: On Eclipse, this can done by selecting `Show Log Files`)
   You can further explore other logs from the console.
 5. Wait for both projects to build and start running. You can check the status of your project in the Codewind Explorer. When both projects show they are in *[Running] [Build Succeeded]* state, proceed to the next section.
@@ -67,8 +74,7 @@ Let's test the application to see how it behaves.
 
 1. Right-click the *groceryfrontend* project in the Codewind Explorer, then select *Open App*. This will bring the application up in the browser.
 ![image](https://user-images.githubusercontent.com/20015929/67326861-15169380-f4e5-11e9-8c91-e32697499123.png)
-![image](https://user-images.githubusercontent.com/20015929/67326862-15169380-f4e5-11e9-8e23-90f45faf7468.png)
-2. Once the application appears, you'll see that the inventory system is blank, and no actions can be done yet. That is because the frontend application does not implement the backend yet. 
+2. Once the application appears, you'll see that the inventory system is blank, and no actions can be done yet. That is because the frontend application is not referencing the backend yet.
 ![image](https://user-images.githubusercontent.com/20015929/67326863-15169380-f4e5-11e9-8de6-b21f5927293e.png)
 3. In the Codewind-Workspace in VS Code, navigate to `groceryfrontend > server > apis > storeAPIs.js`. We need to change the value of backendHost on line 6. 
 4. In your terminal, run `docker ps -a`. Your output should look something like:  
@@ -105,6 +111,7 @@ The item quantity status feature is used to display the quantity status of a spe
    b. Search for **ADD STATUS FEATURE HERE - JavaScript Logic** and add the code below. This code is used to check the quantity for each item, and then add the status to the item. If the item's quantity is less than 10, then a warning image will be added to the item's status column. Otherwise, a checkmark image will be added to the item's status column.  
    
    ```
+   /* ADD STATUS FEATURE HERE - JavaScript Logic */
    if(data[i].quantity < 10){
      statusNumber = 0;
      status = '<img src="img/warning.svg" class="status-warning">';
