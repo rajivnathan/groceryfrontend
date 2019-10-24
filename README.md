@@ -47,6 +47,8 @@ This step demonstrates Codewind's project creation feature that allows you to qu
 3. Wait for the project to build and start. The project build status will change to *Build successful* and the project app status will change to *Running*. 
 4. Copy some files for initial setup of the backend. Open a terminal window and run the following command:  
     `sudo cp -r ~/codewind-lab/resources/* ~/codewind-workspace/grocerybackend/`
+5. The data file needs to be writable within the container so we need to modify the permissions on the file  
+    `sudo chown -R 1001 ~/codewind-workspace/grocerybackend/db/data.json`
 5. In VS Code, you should see the grocerybackend automatically start building once it detects the file changes. If not, simply right click the project and select `Build`.
 6. Check the Codewind Explorer/Projects view and make sure both the groceryfrontend and grocerybackend projects have built successfully and are running.
 
